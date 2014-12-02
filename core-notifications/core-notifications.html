@@ -1,0 +1,19 @@
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/font-roboto/roboto.html">
+<link rel="import" href="../components/core-toolbar/core-toolbar.html">
+<link rel="import" href="../components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../newsevents-service/newsevents-service.html">
+
+  <polymer-element name="core-notifications">
+  <template>
+   <newsevents-service id="service" newsevents="{{newsevents}}">
+</newsevents-service>
+<div>
+	<template repeat="{{newsevent in newsevents}}">
+		<p>
+			{{newsevent.title}} &nbsp; {{newsevent.date}}
+		</p>
+	</template>
+	</div>
+  </template>
+  </polymer-element>
