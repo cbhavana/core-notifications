@@ -1,0 +1,31 @@
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/core-ajax/core-ajax.html">
+
+<polymer-element name="newsevents-service" attributes="newsevents">
+  <template>
+     <style>
+    :host {
+      display: none;
+    }
+    </style>
+     <core-ajax id="ajax"
+      auto
+      url="../data/newsevents.json"
+      on-core-response="{{newseventsLoaded}}"
+      handleAs="json">
+    </core-ajax>
+  </template>
+    <script>
+  Polymer('newsevents-service', {
+    created: function() {
+      this.newsevents = [];
+    },
+    newseventsLoaded: function() {
+      // Make a copy of the loaded data
+      this.newsevents = this.$.ajax.response.slice(0);
+      console.log("printing newsevents");
+   console.log(this.newsevents);
+    },
+  });
+  </script>
+</polymer-element>

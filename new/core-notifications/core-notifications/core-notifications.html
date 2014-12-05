@@ -1,0 +1,35 @@
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../newsevents-service/newsevents-service.html">
+
+  <polymer-element name="core-notifications">
+  <template>
+    <newsevents-service id="service" newsevents="{{newsevents}}">
+</newsevents-service>
+<div >
+	<template repeat="{{newsevent in newsevents}}">
+		 <style>
+    :host {
+      display: block;
+      position: center-right;
+      background-color: #FACC2E;
+      padding: 20px;
+     width: 50%;
+	  height 25%;
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+	.card-header {
+      margin-bottom: 10px;
+	  
+    }  
+	</style>
+	<div class="card-header" layout horizontal center>
+			<blockquote>{{newsevent.eid}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{newsevent.title}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{newsevent.date}}</blockquote>
+	<div>
+		</template>
+	</div>
+  </template>
+  <script>
+  Polymer({});
+  </script>
+  </polymer-element>
