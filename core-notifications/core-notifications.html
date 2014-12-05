@@ -12,15 +12,15 @@
 			{{newsevent.title}} &nbsp; &nbsp; {{newsevent.date}}
 		</p>
 	</template> -->
-  <p>
-      {{newsevents[0].title}} &nbsp; &nbsp; {{newsevents[0].date}}
-    </p>
+  <blockquote>
+      {{newsevents[0].eid}} &nbsp; &nbsp;{{newsevents[0].title}} &nbsp; &nbsp; {{newsevents[0].date}}
+    </blockquote>
 
 	</div>
   <button on-click="{{updateModel}}">Submit</button>
   </template>
     <script>
-
+	var i=0;
     Polymer('core-notifications', {
     created: function() {
       this.newsevents=[];
@@ -38,10 +38,13 @@
     updateModel: function() {
      // alert("error");
       //alert(this.newsevents.length+"");
-    this.current = (this.current + 1) % this.newsevents.length;
+    if(i<7){
+	this.current = (this.current + 1) % this.newsevents.length;
     this.newsevents[0].title = this.newsevents[this.current].title;
     this.newsevents[0].date = this.newsevents[this.current].date;
-
+	this.newsevents[0].eid = this.newsevents[this.current].eid;
+	i++;
+  }
   }
      
   });
