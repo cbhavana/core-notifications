@@ -1,35 +1,49 @@
 <link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/font-roboto/roboto.html">
 <link rel="import" href="../newsevents-service/newsevents-service.html">
 
   <polymer-element name="core-notifications">
   <template>
-    <newsevents-service id="service" newsevents="{{newsevents}}">
+   <newsevents-service id="service" newsevents="{{newsevents}}">
 </newsevents-service>
-<div >
-	<template repeat="{{newsevent in newsevents}}">
-		 <style>
-    :host {
-      display: block;
-      position: center-right;
-      background-color: #FACC2E;
-      padding: 20px;
-     width: 50%;
-	  height 25%;
-      font-size: 1.2rem;
-      font-weight: 300;
-    }
-	.card-header {
-      margin-bottom: 10px;
-	  
-    }  
-	</style>
-	<div class="card-header" layout horizontal center>
-			<blockquote>{{newsevent.eid}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{newsevent.title}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{newsevent.date}}</blockquote>
-	<div>
-		</template>
+<div layout vertical center>
+	<!-- <template repeat="{{newsevent in newsevents}}">
+		<p>
+			{{newsevent.title}} &nbsp; &nbsp; {{newsevent.date}}
+		</p>
+	</template> -->
+  <p>
+      {{newsevents[0].title}} &nbsp; &nbsp; {{newsevents[0].date}}
+    </p>
+
 	</div>
+  <button on-click="{{updateModel}}">Submit</button>
   </template>
-  <script>
-  Polymer({});
-  </script>
+    <script>
+
+    Polymer('core-notifications', {
+    created: function() {
+      this.newsevents=[];
+      // this.alternates=[];
+       this.current=0;
+    },
+
+    newseventsLoaded: function() {
+      // Make a copy of the loaded data
+      this.newsevents = this.$.ajax.response.slice(0);
+      console.log("printing newsevents");
+      console.log(this.newsevents);
+    },
+
+    updateModel: function() {
+     // alert("error");
+      //alert(this.newsevents.length+"");
+    this.current = (this.current + 1) % this.newsevents.length;
+    this.newsevents[0].title = this.newsevents[this.current].title;
+    this.newsevents[0].date = this.newsevents[this.current].date;
+
+  }
+     
+  });
+    </script>
   </polymer-element>

@@ -14,18 +14,29 @@
       on-core-response="{{newseventsLoaded}}"
       handleAs="json">
     </core-ajax>
+    </template>
     <script>
   Polymer('newsevents-service', {
     created: function() {
-      this.newsevents = [];
+      this.newsevents=[];
+       this.alternates=["hello"];
+       this.current=0;
     },
-    newseventsLoaded: function() {
+
+   newseventsLoaded: function() {
       // Make a copy of the loaded data
       this.newsevents = this.$.ajax.response.slice(0);
       console.log("printing newsevents");
-      console.log(newsevents);
+      console.log(this.newsevents);
     },
-     }
+
+   /* updateModel: function() {
+     
+    this.current = (this.current + 1) % this.alternates.length;
+    this.newsevents[0].title = this.alternates[this.current];
+
+  }*/
+     
   });
   </script>
-</template>
+</polymer-element>
